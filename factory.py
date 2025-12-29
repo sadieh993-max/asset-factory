@@ -11,8 +11,17 @@ def run_factory():
     
     for topic in topics:
         # The prompt now asks for a lead-capture structure
-        prompt = f"Write a professional guide about {topic}. End with a 'Next Steps' section."
-        
+        prompt = f"""
+You are a senior industrial consultant. Write a 1,200-word authoritative Technical Report on: {topic}.
+
+STRUCTURE:
+1. Abstract: Summarize the 2025 market outlook for this topic.
+2. Financial Analysis: Create a detailed 'Cost vs ROI' table (use realistic 2025 estimates).
+3. Regulatory Landscape: Mention specific compliance or permit requirements.
+4. Strategic Recommendation: Give 3 actionable steps for a CEO to take.
+
+TONE: Professional, data-driven, and technical. Avoid fluff.
+"""
         response = ollama.chat(model='llama3.2', messages=[{'role': 'user', 'content': prompt}])
         content = response['message']['content']
 

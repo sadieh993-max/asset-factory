@@ -17,11 +17,17 @@ def harvest_intent(seed_keywords):
             
     return pd.DataFrame(results)
 
-# Example High-Ticket Seed Keywords
+# Example High-Ticket Seed Keywords# Updated Seeds for High-Ticket Lead Gen
 seeds = [
-    "commercial solar installation cost ",
-    "how to permit a guest house in ",
-    "industrial generator maintenance "
+    "commercial solar tax credits 2025 ",
+    "medical malpractice settlement calculator ",
+    "industrial hvac maintenance contract cost ",
+    "business insurance for trucking companies in ",
+    "managed it services pricing for law firms ",
+    "corporate wellness program roi for enterprises ",
+    "commercial real estate financing rates [City] ",
+    "software development outsourcing cost for startups ",
+    "permits for luxury adu in [State] "
 ]
 
 # Execute the harvest
