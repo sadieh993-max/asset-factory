@@ -5,13 +5,95 @@
     <style>
         body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 20px; }
         h1 { color: #333; }
-        .cta { background: #0070f3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+        .cta { background: #0070f3; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; cursor: pointer; border: none; }
+        .cta:hover { background: #0051cc; }
+        .form-box { 
+            background: #f4f7f6; 
+            padding: 30px; 
+            border-radius: 10px; 
+            border: 2px solid #0070f3; 
+            margin-top: 30px; 
+            display: none;
+        }
+        .form-box.active { display: block; }
+        .form-box h2 { margin-top: 0; color: #333; }
+        .form-box input[type="email"] { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 15px; 
+            border: 1px solid #ddd; 
+            border-radius: 5px; 
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .form-box button { 
+            background: #0070f3; 
+            color: white; 
+            padding: 15px 25px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 18px; 
+            font-weight: bold; 
+            width: 100%;
+        }
+        .form-box button:hover { background: #0051cc; }
+        .success-message { 
+            display: none; 
+            background: #d4edda; 
+            color: #155724; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 15px; 
+        }
+        .success-message.active { display: block; }
     </style>
 </head>
 <body>
     <h1>Industry Intelligence Reports</h1>
     <p>We provide high-level ROI analysis and technical guides for high-ticket industries.</p>
     <br>
-    <a href="#" class="cta">Request a Custom Quote</a>
+    <a href="#quote-form" class="cta" onclick="showQuoteForm(event)">Request a Custom Quote</a>
+    
+    <div id="quote-form" class="form-box">
+        <h2>Request Your Custom Quote</h2>
+        <p>Enter your email to receive the full ROI report and pricing.</p>
+        <form id="quote-form-element" onsubmit="handleQuoteSubmit(event)">
+            <input type="email" name="email" placeholder="Work Email" required>
+            <button type="submit">GET MY QUOTE</button>
+        </form>
+        <div id="success-message" class="success-message">
+            Thank you! We'll be in touch shortly with your custom quote.
+        </div>
+    </div>
+
+    <script>
+        function showQuoteForm(event) {
+            event.preventDefault();
+            const formBox = document.getElementById('quote-form');
+            formBox.classList.add('active');
+            formBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            formBox.querySelector('input[type="email"]').focus();
+        }
+
+        function handleQuoteSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.querySelector('input[type="email"]').value;
+            const successMessage = document.getElementById('success-message');
+            
+            // Here you would typically send the data to a server
+            // For now, we'll just show a success message
+            console.log('Quote request submitted for:', email);
+            
+            // Hide form, show success message
+            form.style.display = 'none';
+            successMessage.classList.add('active');
+            
+            // Optional: You can integrate with a form service like Formspree, Netlify Forms, etc.
+            // Example with mailto fallback:
+            // window.location.href = `mailto:your-email@example.com?subject=Quote Request&body=Email: ${encodeURIComponent(email)}`;
+        }
+    </script>
 </body>
 </html>
